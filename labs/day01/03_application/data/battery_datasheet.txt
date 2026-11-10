@@ -1,0 +1,62 @@
+# BX-3000 Ultra Lithium Battery
+
+**Product Name**: BX-3000 Ultra Lithium  
+**Manufacturer**: TechPower Industries  
+**Model**: BX-3000  
+
+## Overview
+
+The BX-3000 is a premium rechargeable lithium-ion battery designed for high-performance portable electronics. It combines cutting-edge battery chemistry with intelligent power management to deliver reliable, long-lasting energy for demanding applications.
+
+## Technical Specifications
+
+**Energy & Capacity**
+- Nominal Capacity: 5000 mAh
+- Rated Energy: 18.5 Wh
+- Minimum Capacity: 4900 mAh (after 100 charge cycles)
+
+**Voltage Characteristics**
+- Nominal Voltage: 3.7V
+- Maximum Voltage: 4.2V
+- Minimum Voltage: 2.5V
+- Average Operating Voltage: 3.6V
+
+**Physical Specifications**
+- Dimensions: 85 mm × 65 mm × 12 mm
+- Weight: 185 grams
+- Casing Material: Aluminum alloy with protective coating
+
+**Performance**
+- Fast Charging: Supports up to 2A charging current (0-100% in ~2.5 hours)
+- Standard Charging: 1A charging current (0-100% in ~5 hours)
+- Maximum Discharge Current: 3.5A continuous
+- Cycle Life: 500-800 full charge cycles at 80% capacity retention
+
+**Safety Features**
+- Over-temperature protection (trips at 65°C)
+- Over-current protection (auto-disconnect at 5A)
+- Short-circuit protection: Built-in fuse
+
+**Environmental Specifications**
+- Operating Temperature Range: 0°C to 45°C
+- Storage Temperature Range: -20°C to 35°C
+- Humidity Tolerance: 20% to 80% RH (non-condensing)
+
+**Certifications**
+- CE Mark (European Conformity)
+- FCC ID: 2AOKB-BX3000 (USA)
+- RoHS Compliant
+- UL Certified
+
+## Warranty
+
+- Standard Warranty: 24 months from date of purchase
+- Coverage: Manufacturing defects and premature capacity loss
+- Exclusions: Physical damage, unauthorized modification, misuse
+
+## Storage & Handling
+
+- Store in cool, dry place
+- Maintain charge level at 50% for long-term storage
+- Avoid exposure to extreme temperatures
+- Keep away from moisture and corrosive substances
