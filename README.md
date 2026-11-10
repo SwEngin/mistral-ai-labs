@@ -61,7 +61,7 @@ mistral-ai-labs/
 
 ## Labs Overview
 
-### Lab 1: First API Request (30-45 minutes)
+### Lab 1: First API Request
 
 Learn the basics of sending a request to Mistral's API and handling responses.
 
@@ -72,7 +72,7 @@ Learn the basics of sending a request to Mistral's API and handling responses.
 
 **Key skill**: "I can use the Mistral SDK"
 
-### Lab 2: Prompt Engineering and Model Behavior (45 minutes)
+### Lab 2: Prompt Engineering and Model Behavior
 
 Understand how prompt design affects model output, consistency, and data quality. Discover that good prompts improve behavior, but aren't sufficient alone.
 
@@ -85,7 +85,7 @@ Understand how prompt design affects model output, consistency, and data quality
 
 **Scenario**: Build a product evaluation assistant that extracts specifications from product descriptions.
 
-### Lab 3: Build Your First Python Application (45 minutes)
+### Lab 3: Build Your First Python Application
 
 Turn your prompt engineering experiments into a properly organized, reusable Python application. Learn application architecture and module separation.
 
@@ -98,7 +98,7 @@ Turn your prompt engineering experiments into a properly organized, reusable Pyt
 
 **Scenario**: Transform the product evaluation assistant from Lab 2 into a modular application that supports any product without code changes.
 
-### Lab 4: Structured Outputs and Classification (45 minutes)
+### Lab 4: Structured Outputs and Classification
 
 Make LLM responses machine-readable using Pydantic schemas and Mistral's structured output API. Learn the difference between structural and factual validation.
 
