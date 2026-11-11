@@ -1,0 +1,4 @@
+.venv/
+.env
+__pycache__/
+library_id.txt

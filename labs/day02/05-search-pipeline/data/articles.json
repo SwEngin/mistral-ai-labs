@@ -1,0 +1,42 @@
+[
+  {
+    "id": "K8S-DEPLOY",
+    "title": "Deploying a Kubernetes application",
+    "content": "Package the application in a container image. Create a Kubernetes Deployment with the image and desired replica count, then expose the pods through a Service. Use a rolling update to replace pods gradually."
+  },
+  {
+    "id": "K8S-HEALTH",
+    "title": "Troubleshooting unhealthy Kubernetes pods",
+    "content": "When pods repeatedly restart, inspect their status and logs with kubectl. Check readiness and liveness probes, resource limits, image pull errors, and recent cluster events."
+  },
+  {
+    "id": "API-AUTH",
+    "title": "API authentication with bearer tokens",
+    "content": "Clients authenticate API requests by sending an access token in the Authorization header using the Bearer scheme. The server verifies the token signature, expiry, issuer, and required scopes before granting access."
+  },
+  {
+    "id": "API-EXPIRED",
+    "title": "Troubleshooting expired API credentials",
+    "content": "A 401 response can indicate an expired or invalid access token. Check its expiration time, refresh credentials through the identity provider, and verify that the Authorization header is sent correctly."
+  },
+  {
+    "id": "DB-INDEX",
+    "title": "Speeding up slow database queries",
+    "content": "Examine the query execution plan to find expensive table scans. Create a suitable index on frequently filtered columns, then measure the query again. Too many indexes can slow writes."
+  },
+  {
+    "id": "DB-POOL",
+    "title": "Database connection pool exhaustion",
+    "content": "When the application cannot acquire a database connection, check pool utilization, leaked connections, long transactions, and the database connection limit. Close connections promptly and tune pool sizes using measurements."
+  },
+  {
+    "id": "OPS-LOG",
+    "title": "Troubleshooting service outages",
+    "content": "During an outage, compare recent changes with application logs, error rates, and dependency health. Use request identifiers to trace a failing request across services before deciding on a rollback."
+  },
+  {
+    "id": "OPS-RETRY",
+    "title": "Handling transient API failures",
+    "content": "For transient network failures and rate limits, apply bounded retries with exponential backoff and jitter. Avoid retrying non-idempotent operations unless they use an idempotency key."
+  }
+]

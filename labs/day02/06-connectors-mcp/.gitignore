@@ -1,0 +1,4 @@
+.env
+.venv/
+connector_id.txt
+__pycache__/
