@@ -1,3 +1,6 @@
 mistralai>=2.0.0,<4.0.0
 python-dotenv>=1.0,<2
 pydantic>=2.11,<3
+mcp>=2,<3
+uvicorn>=0.30,<1
+mistralai-agents==1.1.0; python_version >= "3.12" and python_version < "3.15"

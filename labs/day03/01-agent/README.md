@@ -17,7 +17,7 @@ The instructor solution and offline tests were checked with Mistral SDK 3.7.0.
 
 ```bash
 python -m pip install -r requirements.txt
-cd labs/day03/01-incident-agent
+cd day03/01-agent
 python -c "from mistralai.client import Mistral; print('SDK import OK')"
 ```
 

@@ -9,7 +9,7 @@ from mistralai.client import Mistral
 
 from incident_tools import get_incident_details, get_recent_deployments, get_service_health
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_QUESTION = (
     "Investigate incident INC-1042. Which service is affected, what is its "
     "current health, and was there a recent deployment that might be relevant?"

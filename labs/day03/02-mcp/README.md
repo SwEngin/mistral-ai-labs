@@ -10,9 +10,8 @@ imports the inventory functions.
 
 ## Setup and safety
 
-Use Python **3.12–3.14**, `uv`, and the lab's own environment: the MCP v2
-and Agents SDK dependencies are separate from the workshop's root
-requirements. Internet access is needed for installation and agent calls.
+Use Python **3.12–3.14** and the workshop's root requirements. Internet
+access is needed for installation and agent calls.
 The direct MCP exercises do **not** require a Mistral key.
 
 From the repository root:
@@ -20,7 +19,7 @@ From the repository root:
 ```bash
 python -m pip install -r requirements.txt
 cd labs/day03/02-mcp
-python -c "from mistralai.client import Mistral; print('SDK import OK')"
+python -c "from mcp import Client; from mistralai import agents; print('MCP and Agents SDK imports OK')"
 ```
 
 The server is unauthenticated and must bind **only to 127.0.0.1**. Never
@@ -37,7 +36,7 @@ schema derived from its type annotations. The provided
 In one terminal, from this lab directory:
 
 ```bash
-uv run uvicorn server:app --host 127.0.0.1 --port 8000
+python -m uvicorn server:app --host 127.0.0.1 --port 8000
 ```
 
 The endpoint is `http://127.0.0.1:8000/mcp`. In a second terminal, complete
@@ -47,8 +46,8 @@ with the CLI's item ID. Display structured output and inspect `is_error`.
 The starter raises `NotImplementedError` until completed.
 
 ```bash
-uv run python inspect_tools.py
-uv run python inspect_tools.py --item SKU-999
+python inspect_tools.py
+python inspect_tools.py --item SKU-999
 ```
 
 For `SKU-204`, the business result has name `NVMe SSD 2TB` and quantity 5.
@@ -80,8 +79,8 @@ server. Check these cases:
 | SKU-204 | -1 | MCP tool error |
 
 ```bash
-uv run python inspect_tools.py --item SKU-204 --quantity 8
-uv run python inspect_tools.py --item SKU-204 --quantity -1
+python inspect_tools.py --item SKU-204 --quantity 8
+python inspect_tools.py --item SKU-204 --quantity -1
 ```
 
 Distinguish a returned business error from an MCP `is_error` response.
@@ -99,7 +98,7 @@ accessible function-calling model if the default `mistral-large-4` is not
 available. Never print or commit the key. Agent calls may incur charges.
 
 ```bash
-uv run python agent.py
+python agent.py
 ```
 
 The prepared Agents SDK example connects directly through `RemoteMCP`; no

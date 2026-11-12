@@ -8,33 +8,79 @@ policy. This exercise records decisions; it does **not** deploy changes,
 request an approval, or wait for a person.
 
 
-## Setup
+## Setup — Windows and Docker
 
-Mistral Workflows is a hosted service; access, a Mistral API key, an available
-chat model and internet are required. Requests and workflow executions may
-incur charges. Use only the fictional inputs below. You need the Mistral CLI,
-Bun, and Python 3.12 or later. Follow the
-[CLI setup](https://docs.mistral.ai/studio/mistral-cli/quickstart) and sign
-in with `mistral login`. Your instructor may supply a prepared scaffold.
+Your instructor prepares a Linux image and a generated project before class.
+You need Docker Desktop running in **Linux container mode**, internet access,
+access to Mistral's hosted Workflows and an API key in the assigned workspace.
+Docker supplies the Linux tools; it does not supply service access. Model calls
+and workflow executions may incur charges. Docker Desktop may itself use a
+WSL 2 or Hyper-V backend, depending on the VM configuration; a working Linux
+container backend must already be configured. Use only fictional data.
 
-Otherwise, in a separate working directory (not inside this workshop):
+From the **repository root** in Windows PowerShell, check Docker and confirm
+that your instructor's image is present:
 
-```bash
-mistral workflows init change-workflow
-cd change-workflow
+```powershell
+docker info --format '{{.OSType}}'
+docker image inspect mistral-workshop-workflows:day03
 ```
 
-In the generated `.env`, configure `MISTRAL_API_KEY` and `MISTRAL_MODEL`
-with your approved credentials and a chat model available to your workspace.
-Never commit or share the key. The generated project ignores `.env`; verify
-that before using Git.
+The first command must print `linux`. If either command fails, ask the
+instructor for the prepared environment. The instructor has already created
+`day03/03-workflows/workspace/change-workflow/` for you; it holds your
+individual generated project and is ignored by the workshop Git repository.
+Do not share its credentials or `.env` file.
 
-Copy this lab's `change_request.py` to
-`apps/worker/src/worker/workflows/change_request.py` in the generated project.
-Add `.lab_state/` to the **generated project's** `.gitignore` before running
-the lab. Work on the copied file; the worker discovers workflow modules in
-that package. If you also use the instructor solution, use it **instead of**
-the starter, not alongside it: both register the same workflow and activities.
+Start your container from the repository root:
+
+```powershell
+docker run --rm -it `
+  --mount "type=bind,source=${PWD}/day03/03-workflows/workspace,target=/workspace" `
+  -w /workspace/change-workflow `
+  mistral-workshop-workflows:day03
+```
+
+Commands inside the container below use **Linux Bash**, not PowerShell. Your
+project remains on the Windows bind mount after the container stops; the
+container's own filesystem and login do not. Keep credentials private.
+
+Sign in and verify the workspace selected by your instructor:
+
+```bash
+mistral login --device --insecure-storage
+mistral context show
+```
+
+Open the device-login URL in your Windows browser. `--insecure-storage` stores
+the CLI login in a file inside this disposable container because a desktop
+keychain may be unavailable; use only the approved training account. It is
+not a production credential-storage recommendation.
+
+Open `day03/03-workflows/workspace/change-workflow/.env` in VS Code. Set
+`MISTRAL_API_KEY` and `MISTRAL_MODEL` using the instructor's approved method
+and an accessible chat model. Set `DEPLOYMENT_NAME` to your instructor-assigned
+unique name, for example `workshop-alice`. Do not print, commit or share
+credentials. Ensure `.env` and `.lab_state/` are excluded from Git.
+
+Each participant must also use a unique **workflow name** in the copied
+`change_request.py` decorator, for example `software-change-review-alice`.
+Use an instructor-assigned, non-sensitive suffix; leave the activity names
+unchanged. In a shared workspace, identical workflow names in multiple active
+deployments may lead to ambiguous routing or a `409` error. A unique
+deployment name alone does not resolve that. Do not start multiple workers
+for one participant's deployment: the local recording fixture needs a single
+worker. The instructor will verify the names and routing before class.
+
+Your editable file in VS Code is:
+
+```text
+day03/03-workflows/workspace/change-workflow/apps/worker/src/worker/workflows/change_request.py
+```
+
+The worker discovers workflow modules in that package. If the instructor
+uses the solution, it replaces the starter file; the two must not be loaded
+side by side.
 
 ## First 10 minutes — predict the flow
 
@@ -64,14 +110,15 @@ workflow-aware client, requests JSON and validates the result with
 risk judgment is correct. The starter raises `NotImplementedError` until
 your implementation is complete.
 
-From the generated project root, start the worker:
+In the container, from `/workspace/change-workflow`, start the worker:
 
 ```bash
-mistral dev
+mistral dev --no-open
 ```
 
-Keep it running. In Mistral Console, open **Workflows**, select
-`software-change-review`, start an execution and provide this input:
+Keep it running. In your Windows browser, open Mistral Console in the same
+workspace, open **Workflows**, select **your unique workflow name**, start an
+execution and provide this input:
 
 ```json
 {
@@ -111,7 +158,8 @@ The recording activity writes a decision, creates a marker and raises an
 exception on the first attempt. The workflow service should retry it; the
 next attempt writes the same decision to the same path and completes. Inspect
 execution history and worker logs for the failed attempt, retry and result.
-Find the one JSON record in `apps/worker/src/worker/workflows/.lab_state/`;
+Find the one JSON record in the generated project's
+`apps/worker/src/worker/workflows/.lab_state/`;
 the `.retry` file is the demonstration marker, not a second decision.
 
 Use a fresh ID for each new execution. Reusing an ID with a different
@@ -137,7 +185,11 @@ Even durable orchestration does not guarantee exactly-once side effects.
   approval, including rejection, timeout, authorization and audit. Do not
   confuse a recorded approval requirement with an actual approval.
 
-Stop the worker with Ctrl+C. If the hosted service is unavailable, trace the
-code and discuss the expected behavior; do not claim a live retry occurred.
+Stop the worker with Ctrl+C. Restart it after editing the workflow, unless
+you have verified that the development worker reloaded your changes. When
+finished, run `mistral logout` inside the container and `exit`. The mounted
+project, `.env`, and retry state remain on the VM; follow your instructor's
+approved cleanup instructions. If the hosted service is unavailable, trace
+the code and discuss the expected behavior; do not claim a live retry occurred.
 See [workflow quickstart](https://docs.mistral.ai/studio/workflows/quickstarts/your-first-workflow)
 and [activity retries](https://docs.mistral.ai/studio/workflows/building-workflows/activities/basics).

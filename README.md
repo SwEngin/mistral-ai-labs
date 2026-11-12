@@ -33,7 +33,8 @@ You need Python 3.10 or later, internet access and a
 [Mistral API key](https://console.mistral.ai/). Some labs also require
 specific model access or workspace permissions; check the lab instructions
 before starting. Hosted API requests and persistent resources may incur
-charges.
+charges. Day 03 Lab 02 requires Python 3.12–3.14; its Agents SDK dependency
+is installed only on those versions.
 
 From the repository root, create an environment and install dependencies:
 
