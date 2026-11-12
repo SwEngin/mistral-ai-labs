@@ -20,6 +20,13 @@ challenges at your own pace.
 - Embeddings, semantic search and retrieval evaluation
 - Accessing external knowledge with connectors and MCP
 
+### [Day 03 — Agents, tools and workflows](day03/)
+
+- Investigating incidents with local tools and model-directed function calls
+- Tracing tool execution and evaluating evidence and failures
+- Building and discovering MCP tools and connecting an agent
+- Defining durable workflows, deterministic decisions and retry-safe activities
+
 ## Getting started
 
 You need Python 3.10 or later, internet access and a
