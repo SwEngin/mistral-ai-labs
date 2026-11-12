@@ -24,18 +24,33 @@ that your instructor's image is present:
 ```powershell
 docker info --format '{{.OSType}}'
 docker image inspect mistral-workshop-workflows:day03
+Test-Path day03/03-workflows/workspace/change-workflow/apps/worker/src/worker/workflows/change_request.py
 ```
 
-The first command must print `linux`. If either command fails, ask the
-instructor for the prepared environment. The instructor has already created
+The first command must print `linux` and the last must print `True`. If a
+check fails, ask the instructor for the prepared environment. The instructor
+has already created
 `day03/03-workflows/workspace/change-workflow/` for you; it holds your
 individual generated project and is ignored by the workshop Git repository.
-Do not share its credentials or `.env` file.
+Do not share the project or any credentials it may contain.
 
-Start your container from the repository root:
+Set `MISTRAL_API_KEY` in your PowerShell environment using the approved
+training method. Use the key for the workspace assigned by the instructor.
+Check that it is set without displaying it:
+
+```powershell
+if ([string]::IsNullOrWhiteSpace($env:MISTRAL_API_KEY)) { throw "Set MISTRAL_API_KEY first." }
+```
+
+Start your container from the repository root. Replace the deployment name
+with the unique name assigned by your instructor, and use the model they
+have verified in your workspace:
 
 ```powershell
 docker run --rm -it `
+  -e MISTRAL_API_KEY `
+  -e MISTRAL_MODEL="mistral-small-2603" `
+  -e DEPLOYMENT_NAME="workshop-student01" `
   --mount "type=bind,source=${PWD}/day03/03-workflows/workspace,target=/workspace" `
   -w /workspace/change-workflow `
   mistral-workshop-workflows:day03
@@ -43,25 +58,12 @@ docker run --rm -it `
 
 Commands inside the container below use **Linux Bash**, not PowerShell. Your
 project remains on the Windows bind mount after the container stops; the
-container's own filesystem and login do not. Keep credentials private.
-
-Sign in and verify the workspace selected by your instructor:
-
-```bash
-mistral login --device --insecure-storage
-mistral context show
-```
-
-Open the device-login URL in your Windows browser. `--insecure-storage` stores
-the CLI login in a file inside this disposable container because a desktop
-keychain may be unavailable; use only the approved training account. It is
-not a production credential-storage recommendation.
-
-Open `day03/03-workflows/workspace/change-workflow/.env` in VS Code. Set
-`MISTRAL_API_KEY` and `MISTRAL_MODEL` using the instructor's approved method
-and an accessible chat model. Set `DEPLOYMENT_NAME` to your instructor-assigned
-unique name, for example `workshop-alice`. Do not print, commit or share
-credentials. Ensure `.env` and `.lab_state/` are excluded from Git.
+container's own filesystem does not. No CLI login is required for this setup:
+the CLI uses the key in its shell. Check the workspace identity shown when
+`mistral dev` starts. The instructor must ensure the generated project's
+`.env` has no conflicting key, model or deployment settings. Do not print,
+commit or share credentials. Docker administrators can inspect container
+environment variables, so use only a trusted training VM.
 
 Each participant must also use a unique **workflow name** in the copied
 `change_request.py` decorator, for example `software-change-review-alice`.
@@ -187,8 +189,8 @@ Even durable orchestration does not guarantee exactly-once side effects.
 
 Stop the worker with Ctrl+C. Restart it after editing the workflow, unless
 you have verified that the development worker reloaded your changes. When
-finished, run `mistral logout` inside the container and `exit`. The mounted
-project, `.env`, and retry state remain on the VM; follow your instructor's
+finished, run `exit` inside the container. The mounted
+project and retry state remain on the VM; follow your instructor's
 approved cleanup instructions. If the hosted service is unavailable, trace
 the code and discuss the expected behavior; do not claim a live retry occurred.
 See [workflow quickstart](https://docs.mistral.ai/studio/workflows/quickstarts/your-first-workflow)
