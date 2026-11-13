@@ -27,6 +27,11 @@ challenges at your own pace.
 - Building and discovering MCP tools and connecting an agent
 - Defining durable workflows, deterministic decisions and retry-safe activities
 
+### [Day 04 — Corporate travel planner capstone](day04/)
+
+- Combining document extraction, policy retrieval, read-only agent tools
+  and deterministic cost and compliance checks
+
 ## Getting started
 
 You need Python 3.10 or later, internet access and a

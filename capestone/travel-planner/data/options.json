@@ -1,0 +1,12 @@
+{
+  "transport": [
+    {"name": "Train Saver", "mode": "train", "class": "standard", "round_trip_eur": 195, "minutes": 295, "refundable": false},
+    {"name": "Train Flex", "mode": "train", "class": "standard", "round_trip_eur": 270, "minutes": 310, "refundable": true},
+    {"name": "Flight Economy", "mode": "flight", "class": "economy", "round_trip_eur": 265, "minutes": 360, "refundable": false}
+  ],
+  "hotels": [
+    {"name": "Harbor Gate Hotel", "room_night_eur": 145, "distance_km": 0.8, "rooms_available": 2},
+    {"name": "City Hub Hotel", "room_night_eur": 125, "distance_km": 1.4, "rooms_available": 2},
+    {"name": "University Guesthouse", "room_night_eur": 104, "distance_km": 4.2, "rooms_available": 2}
+  ]
+}

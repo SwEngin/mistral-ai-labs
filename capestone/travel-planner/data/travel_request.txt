@@ -1,0 +1,18 @@
+Northstar Consulting - Business Travel Request
+
+Request ID: TR-2026-104
+Destination: Hamburg, Germany
+Departure city: Nuremberg, Germany
+Conference dates: December 3-4, 2026
+Outbound travel: December 2, 2026
+Return travel: December 4, 2026
+Travelers: 2 employees
+Accommodation: 2 separate rooms, 2 nights
+Conference registration: EUR 310 per attendee
+Maximum planning budget: EUR 1,650 total
+
+Both employees must travel to the conference.
+One employee requires a refundable transportation ticket because of an
+uncertain customer commitment.
+The employees prefer accommodation within reasonable distance of the conference.
+Minimize unnecessary expenditure while complying with company policy.
